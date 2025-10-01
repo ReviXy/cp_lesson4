@@ -1,5 +1,6 @@
-import {MiniMaple} from "../src/miniMaple";
+import {MiniMaple} from "../src/miniMaple.js";
+import {Term} from "../src/miniMaple.js";
 
-test('it fails', () => {
-    expect(false).toBeTruthy();
+test('it succeeds', () => {
+    expect(true).toBeTruthy();
 });

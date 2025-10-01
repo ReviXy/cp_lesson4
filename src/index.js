@@ -1,14 +1,45 @@
-document.addEventListener('DOMContentLoaded',setup)
+const miniMaple = new MiniMaple();
 
-function setup() {
-    document.getElementById('demoButton').onclick = addSomething;
+function calculateDerivative() {
+    const polynomialInput = document.getElementById('polynomial');
+    const variableInput = document.getElementById('variable');
+    const resultDiv = document.getElementById('result');
+    const resultContent = document.getElementById('resultContent');
+
+    const polynomial = polynomialInput.value.trim();
+    const variable = variableInput.value.trim();
+
+    if (!polynomial || !variable) {
+        showError('Пожалуйста, заполните оба поля');
+        return;
+    }
+
+    try {
+        const derivative = miniMaple.differentiate(polynomial, variable);
+        showResult(polynomial, variable, derivative);
+        
+    } catch (error) {
+        showError('Ошибка: ' + error.message);
+    }
 }
 
-function addSomething(){
-    const someDummyDiv = document.createElement('div');
-    someDummyDiv.classList.add('generated');
-    const count = document.getElementsByClassName('generated').length;
-    someDummyDiv.innerHTML = `I was created by JS! There are already ${count} of my friends!`;
-    const container = document.getElementById('container');
-    container.appendChild(someDummyDiv);
+function showResult(polynomial, variable, derivative) {
+    const resultDiv = document.getElementById('result');
+    const resultContent = document.getElementById('resultContent');
+    
+    resultContent.innerHTML = `
+        <p><strong>Исходный многочлен:</strong> ${polynomial}</p>
+        <p><strong>Переменная:</strong> ${variable}</p>
+        <p><strong>Производная:</strong> <code>${derivative}</code></p>
+    `;
+    
+    resultDiv.style.display = 'block';
+}
+
+function showError(message) {
+    const resultDiv = document.getElementById('result');
+    const resultContent = document.getElementById('resultContent');
+    
+    resultContent.innerHTML = `<p class="error">${message}</p>`;
+    resultDiv.style.display = 'block';
 }
