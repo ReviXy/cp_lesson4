@@ -1,4 +1,10 @@
+import {MiniMaple} from "./miniMaple.js";
+// import {Term} from "miniMaple.js";
+
 const miniMaple = new MiniMaple();
+
+const button = document.getElementById("calc-derivative");
+button.onclick = calculateDerivative;
 
 function calculateDerivative() {
     const polynomialInput = document.getElementById('polynomial');

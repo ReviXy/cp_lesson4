@@ -1,4 +1,4 @@
-class MiniMaple {
+export class MiniMaple {
     constructor() {
         this.terms = [];
     }
@@ -52,7 +52,7 @@ class MiniMaple {
     }
 }
 
-class Term{
+export class Term{
     constructor() { 
         this.coefficient = 1
         this.variable = null
@@ -60,6 +60,11 @@ class Term{
         this.sign = 1
     }
 
+    /**
+     * 
+     * @param {String} termStr 
+     * @returns 
+     */
     static parse(termStr){
         const term = new Term()
 
@@ -71,7 +76,7 @@ class Term{
         if (!hasVariable) {
             const temp = parseFloat(termStr)
             if (temp) term.coefficient = temp 
-            else throw "Failed parseFloat"
+            else throw "Failed parseFloat1"
             term.exponent = 0;
             return term;
         }
@@ -79,10 +84,10 @@ class Term{
         const parts = termStr.split('*');
         let a
 
-        if (parts.length != 1){
+        if (parts.length > 1){
             const temp = parseFloat(parts[0])
             if (temp) term.coefficient = temp 
-            else throw "Failed parseFloat"
+            else throw "Failed parseFloat2"
             a = parts[1]
         }
         else a = parts[0]
